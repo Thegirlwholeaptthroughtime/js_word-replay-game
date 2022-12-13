@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+    <link rel="stylesheet" href="style.css`">
+</head>
+
+<body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div>제시어 : <span id="word"></span></div>
+    <input type="text">
+    <button>입력</button>
+
+
+    <script>
+        const number = parseInt(prompt("명몇이 참가하나요?"),10);
+        //마지막 10은 십진법을 뜻함 
+        
+      
+
+
+
+        const onClick = function(){
+            console.log('button click')
+        }
+        //document.querySelector('#word')
+        document.querySelector('input').addEventListener("input" , (event) => {
+            console.log(event.target.value)
+        });
+        document.querySelector('button').addEventListener("click", onClick)
+        //리스너함수 혹은 콜백함수 혹은 익명함수
+ 
+    </script>
+</body>
+
+</html>
