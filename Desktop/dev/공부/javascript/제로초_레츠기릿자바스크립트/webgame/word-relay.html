@@ -17,23 +17,51 @@
 
 
     <script>
-        const number = parseInt(prompt("명몇이 참가하나요?"),10);
-        //마지막 10은 십진법을 뜻함 
-        
-      
 
 
 
-        const onClick = function(){
-            console.log('button click')
-        }
-        //document.querySelector('#word')
-        document.querySelector('input').addEventListener("input" , (event) => {
-            console.log(event.target.value)
-        });
-        document.querySelector('button').addEventListener("click", onClick)
-        //리스너함수 혹은 콜백함수 혹은 익명함수
- 
+        let word2 = 'best'
+        console.log(word2[word2.length - 3])
+        const number = parseInt(prompt("명몇이 참가하나요?"));
+        const $button = document.querySelector('button');
+        const $input = document.querySelector('input')
+        const $word = document.querySelector('#word')
+        const $order = document.querySelector('#order')
+        let word;// 제시어
+        let newWord // 새로 입력한 단어
+
+
+
+        const onClickButton = () => {
+            if (!word || word[word.length - 1] === newWord[0] {//제시어가 비어있는가?
+                //비어있다
+                word = newWord //입력한단어가 제시어가 된다
+                $word.textContent = word;
+
+                const order = parseInt($order.textContent);
+                if (order + 1 > number) {
+                    $order.textContent = 1;
+                } else {
+                    $order.textContent = order + 1;
+                }
+
+                //인풋창을 비운다, 그리고 커서를 둔다
+            } else {//올바르지않다
+                alert('올바르지않습니다')
+
+            }
+            $input.value = '';
+            $input.focus();
+
+        };
+
+        const onInput = (event) => {
+            newWord = event.target.value
+        };
+
+        $button.addEventListener('click', onClickButton);
+        $input.addEventListener('input', onInput)
+
     </script>
 </body>
 

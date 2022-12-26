@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        button {
+
+            background: inherit;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+            overflow: visible;
+            cursor: pointer;
+        }
+
+        :root {
+            --main-color: #000;
+            --sub-color: lightblue;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .game_box {
+            width: 60%;
+            height: 50%;
+            border: 5px solid var(--main-color);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .game_box2 {
+            width: 100%;
+        }
+
+        .game_order {
+
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--main-color)
+        }
+
+        .game_word {
+            padding: 20px 0;
+            display: block;
+        }
+
+        .text_box {
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .text_box>div {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .input_box {}
+
+        .input_box input {
+            margin: 0 auto;
+            display: block;
+            width: 150px;
+            height: 20px;
+            border: 5px solid var(--sub-color);
+            border-radius: 5px;
+            font-size: 20px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input_box button {
+            margin: 0 auto;
+            display: block;
+            padding: 10px 25px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game_box">
+
+        <div class="game_box2">
+            <div class="text_box">
+                <div class="game_order"><span id="order">1</span>번째 참가자</div>
+                <div class="game_word">제시어 : <span id="word"></span></div>
+            </div>
+            <div class="input_box">
+                <input type="text">
+                <button>입력</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+        const number = Number(prompt('플레이어는 몇명인가요?'))
+        if (number) {
+            const $order = document.querySelector('#order')
+            const $word = document.querySelector('#word')
+            const $input = document.querySelector('input')
+            const $button = document.querySelector('button')
+            let word;
+            let newWord;
+
+            const onClickBtn = () => {
+                if (newWord.length === 3 && (!word || word[word.length - 1] === newWord[0])) {   //제시어가 비어있거나 혹은 입력한 단어가 올바른가?
+                    //비어있다
+                    word = newWord; // 입력한 단어가 제시어가 됨
+                    $word.textContent = word;
+
+                    const order = parseInt($order.textContent) //현재순서
+                    if (order + 1 > number) { //현재순서 + 1이 총인원보다 많을경우? -> 현재순서는 1로
+                        $order.textContent = 1
+                    } else {
+                        $order.textContent = order + 1 // 그게아닐경우는 계속해서 +1
+                    }
+                } else {
+                    //올바르지않음
+                    alert('올바르지않아염')
+                }
+                $input.value = '';
+                $input.focus();
+            }
+            const onInput = (event) => {
+                newWord = event.target.value;
+                console.log(newWord)
+            }
+
+
+            $input.addEventListener('input', onInput)
+            $button.addEventListener('click', onClickBtn)
+        }else{
+            alert('인원수를 입력해주세요')
+            
+        }
+
+
+    </script>
+</body>
+
+</html>
